@@ -6,3 +6,8 @@ weatherApp.filter('toDate',function(){
     return dt;
   };
 })
+.filter('toNumber',function(){
+  return function(val){
+    return Math.floor(val);
+  }
+})

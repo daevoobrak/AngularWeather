@@ -6,12 +6,18 @@
   </title>
   <style>
     .container{
-        background-color: green;
-        color: #FFF;
+      padding: 30px !important;
+      background:
+      linear-gradient(to left top,#003B00 0% , #7C9B15 50%, #91A96F 100% );
+      color: #FFF;
     }
     .weatherDesc{
       background-color: #fff;
       color: green;
+      padding: 20px;
+    }
+    .m-top20{
+      margin-top: 20px;
     }
   </style>
   <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -28,27 +34,27 @@
       <div class="container" ng-controller="showWeather">
         <div class="row">
           <div class="col-sm-4">
-            <img src="../AngularWeather/images/{{todayData.weather[0].icon}}.jpg">
+            <img width="150" src="../AngularWeather/images/{{todayData.weather[0].icon}}.png">
           </div>
           <div class="col-sm-4">
             <h2>{{cityDesc}}</h2>
-            <h2>{{todayData.temp.day}} <sup>o</sup>C</h2>
+            <h2>{{todayData.temp.day | toNumber}}<sup>o</sup>C</h2>
             <h2>{{todayData.dt | toDate}}</h2>
           </div>
-          <div class="col-sm-4">
-            <p>Cloudiness:{{todayData.weather[0].description}}</p>
-            <p>Pressure:{{todayData.pressure}}</p>
-            <p>Humidity:{{todayData.humidity}}</p>
+          <div class="col-sm-4 text-right">
+            <p>Cloudiness: {{todayData.weather[0].description}}</p>
+            <p>Pressure: {{todayData.pressure}}</p>
+            <p>Humidity: {{todayData.humidity}}</p>
           </div>
         </div>
-        <div class="row">
-          <div class="col-sm-4" ng-repeat="r in resp.data.list">
-            <div class="row weatherDesc">
+        <div class="row m-top20">
+          <div class="col-sm-4 weatherDesc" ng-repeat="r in resp.data.list">
+            <div class="row">
               <div class="col-sm-6">
-                <h1>{{r.temp.day}} <sup>o</sup>C</h1>
+                <h1>{{r.temp.day | toNumber}}<sup>o</sup>C</h1>
               </div>
               <div class="col-sm-6">
-                <p><img width="70" src="../AngularWeather/images/{{r.weather[0].icon}}.jpg"></p>
+                <p><img width="70" src="../AngularWeather/images/{{r.weather[0].icon}}.png"></p>
                 <p>{{r.dt | toDate}}</p>
                 <p>{{cityDesc}}</p>
               </div>
