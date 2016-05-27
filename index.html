@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>
+    
+  </title>
+  <style>
+    .container{
+        background-color: green;
+        color: #FFF;
+    }
+    .weatherDesc{
+      background-color: #fff;
+      color: green;
+    }
+  </style>
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.js"></script>
+  <script type="text/javascript" src="../AngularWeather/mainApp.js"></script>
+  <script type="text/javascript" src="../AngularWeather/weatherController.js"></script>
+  <script type="text/javascript" src="../AngularWeather/getData.js"></script>
+  <script type="text/javascript" src="../AngularWeather/filter.js"></script>
+</head>
+<body>
+    <div ng-app="weatherApi">
+      <div class="container" ng-controller="showWeather">
+        <div class="row">
+          <div class="col-sm-4">
+            <img src="../AngularWeather/images/{{todayData.weather[0].icon}}.jpg">
+          </div>
+          <div class="col-sm-4">
+            <h2>{{cityDesc}}</h2>
+            <h2>{{todayData.temp.day}} <sup>o</sup>C</h2>
+            <h2>{{todayData.dt | toDate}}</h2>
+          </div>
+          <div class="col-sm-4">
+            <p>Cloudiness:{{todayData.weather[0].description}}</p>
+            <p>Pressure:{{todayData.pressure}}</p>
+            <p>Humidity:{{todayData.humidity}}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-4" ng-repeat="r in resp.data.list">
+            <div class="row weatherDesc">
+              <div class="col-sm-6">
+                <h1>{{r.temp.day}} <sup>o</sup>C</h1>
+              </div>
+              <div class="col-sm-6">
+                <p><img width="70" src="../AngularWeather/images/{{r.weather[0].icon}}.jpg"></p>
+                <p>{{r.dt | toDate}}</p>
+                <p>{{cityDesc}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</body>
+</html>
