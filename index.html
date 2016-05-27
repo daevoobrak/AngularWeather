@@ -2,25 +2,10 @@
 <html>
 <head>
   <title>
-    
+    Weather Report
   </title>
-  <style>
-    .container{
-      padding: 30px !important;
-      background:
-      linear-gradient(to left top,#003B00 0% , #7C9B15 50%, #91A96F 100% );
-      color: #FFF;
-    }
-    .weatherDesc{
-      background-color: #fff;
-      color: green;
-      padding: 20px;
-    }
-    .m-top20{
-      margin-top: 20px;
-    }
-  </style>
   <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="../AngularWeather/style.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
   <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.js"></script>
@@ -34,29 +19,31 @@
       <div class="container" ng-controller="showWeather">
         <div class="row">
           <div class="col-sm-4">
-            <img width="150" src="../AngularWeather/images/{{todayData.weather[0].icon}}.png">
+            <img width="190" class="img-responsive" src="../AngularWeather/images/{{todayData.weather[0].icon}}.png">
           </div>
           <div class="col-sm-4">
-            <h2>{{cityDesc}}</h2>
-            <h2>{{todayData.temp.day | toNumber}}<sup>o</sup>C</h2>
-            <h2>{{todayData.dt | toDate}}</h2>
+            <h2 class="font2 m-top0 m-bottom0">{{cityDesc | uppercase}}</h2>
+            <p class="font8 m-top0 m-bottom0">{{todayData.temp.day | toNumber}}<span class="degreeSymbol">o</span></p>
+            <p class="font2 m-top0 m-bottom0">{{todayData.dt | toDate}}</p>
           </div>
           <div class="col-sm-4 text-right">
-            <p>Cloudiness: {{todayData.weather[0].description}}</p>
+            <p>Cloudiness: {{todayData.weather[0].description | capitalizeFirst}}</p>
             <p>Pressure: {{todayData.pressure}}</p>
             <p>Humidity: {{todayData.humidity}}</p>
           </div>
         </div>
-        <div class="row m-top20">
-          <div class="col-sm-4 weatherDesc" ng-repeat="r in resp.data.list">
-            <div class="row">
-              <div class="col-sm-6">
-                <h1>{{r.temp.day | toNumber}}<sup>o</sup>C</h1>
-              </div>
-              <div class="col-sm-6">
-                <p><img width="70" src="../AngularWeather/images/{{r.weather[0].icon}}.png"></p>
-                <p>{{r.dt | toDate}}</p>
-                <p>{{cityDesc}}</p>
+        <div class="row">
+          <div class="col-sm-4" ng-repeat="r in resp.data.list">
+            <div class="weatherDesc">
+              <div class="row">
+                <div class="col-sm-6">
+                  <p class="font8">{{r.temp.day | toNumber}}<span class="degreeSymbol">o</span</p>
+                </div>
+                <div class="col-sm-6">
+                  <p><img width="70" class="img-responsive" src="../AngularWeather/images/{{r.weather[0].icon}}.png"></p>
+                  <p>{{r.dt | toDate}}</p>
+                  <p>{{cityDesc}}</p>
+                </div>
               </div>
             </div>
           </div>
