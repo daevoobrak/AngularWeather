@@ -13,6 +13,6 @@ weatherApp.filter('toDate',function(){
 })
 .filter('capitalizeFirst',function(){
   return function (str) {
-     return str.charAt(0).toUpperCase() + str.slice(1);
+     return str!=undefined? str.charAt(0).toUpperCase() + str.slice(1) : '';
   }
 })

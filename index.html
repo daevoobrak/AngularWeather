@@ -15,34 +15,37 @@
   <script type="text/javascript" src="../AngularWeather/filter.js"></script>
 </head>
 <body>
-    <div ng-app="weatherApi">
-      <div class="container" ng-controller="showWeather">
-        <div class="row">
-          <div class="col-sm-4">
-            <img width="190" class="img-responsive" src="../AngularWeather/images/{{todayData.weather[0].icon}}.png">
+    <div ng-app="weatherApi" >
+      <div ng-controller="showWeather">
+        <div class="overlay" ng-show="overl"></div>
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-4">
+              <img width="190" class="img-responsive" src="../AngularWeather/images/{{todayData.weather[0].icon}}.png">
+            </div>
+            <div class="col-sm-4">
+              <h2 class="font2 m-top0 m-bottom0">{{cityDesc | uppercase}}</h2>
+              <p class="font8 m-top0 m-bottom0">{{todayData.temp.day | toNumber}}<span class="degreeSymbol">o</span></p>
+              <p class="font2 m-top0 m-bottom0">{{todayData.dt | toDate}}</p>
+            </div>
+            <div class="col-sm-4 text-right">
+              <p>Cloudiness: {{todayData.weather[0].description | capitalizeFirst}}</p>
+              <p>Pressure: {{todayData.pressure}}</p>
+              <p>Humidity: {{todayData.humidity}}</p>
+            </div>
           </div>
-          <div class="col-sm-4">
-            <h2 class="font2 m-top0 m-bottom0">{{cityDesc | uppercase}}</h2>
-            <p class="font8 m-top0 m-bottom0">{{todayData.temp.day | toNumber}}<span class="degreeSymbol">o</span></p>
-            <p class="font2 m-top0 m-bottom0">{{todayData.dt | toDate}}</p>
-          </div>
-          <div class="col-sm-4 text-right">
-            <p>Cloudiness: {{todayData.weather[0].description | capitalizeFirst}}</p>
-            <p>Pressure: {{todayData.pressure}}</p>
-            <p>Humidity: {{todayData.humidity}}</p>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-4" ng-repeat="r in resp.data.list">
-            <div class="weatherDesc">
-              <div class="row">
-                <div class="col-sm-6">
-                  <p class="font8">{{r.temp.day | toNumber}}<span class="degreeSymbol">o</span</p>
-                </div>
-                <div class="col-sm-6">
-                  <p><img width="70" class="img-responsive" src="../AngularWeather/images/{{r.weather[0].icon}}.png"></p>
-                  <p>{{r.dt | toDate}}</p>
-                  <p>{{cityDesc}}</p>
+          <div class="row">
+            <div class="col-sm-4" ng-repeat="r in resp.data.list">
+              <div class="weatherDesc">
+                <div class="row">
+                  <div class="col-sm-6">
+                    <p class="font8">{{r.temp.day | toNumber}}<span class="degreeSymbol">o</span</p>
+                  </div>
+                  <div class="col-sm-6">
+                    <p><img width="70" class="img-responsive" src="../AngularWeather/images/{{r.weather[0].icon}}.png"></p>
+                    <p>{{r.dt | toDate}}</p>
+                    <p>{{cityDesc}}</p>
+                  </div>
                 </div>
               </div>
             </div>
